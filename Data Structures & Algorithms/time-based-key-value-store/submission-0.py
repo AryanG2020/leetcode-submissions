@@ -1,0 +1,28 @@
+class TimeMap:
+
+    def __init__(self):
+        self.mymap={}
+        
+
+    def set(self, key: str, value: str, timestamp: int) -> None:
+        if key not in self.mymap:
+            self.mymap[key]=[]
+        self.mymap[key].append([value,timestamp])
+
+        
+    def get(self, key: str, timestamp: int) -> str:
+        res, items='', self.mymap.get(key,[])
+        l,r=0, len(items)-1
+        while l<=r:
+            m=(l+r)//2
+            if items[m][1]<=timestamp:
+                res= items[m][0]
+            if items[m][1]>timestamp:
+                r=m-1
+            else:
+                l=m+1
+        return res
+            
+
+
+        
